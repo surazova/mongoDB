@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 //Connect to the database before the test is run: 
 before(function(done){  //added the done parameter
     //connect to mongoDB
-mongoose.connect('mongodb://localhost/testaroo', { useNewUrlParser: true }); //testaroo is a database on mongodb
+mongoose.connect('mongodb://mongod:mongod123@ds123919.mlab.com:23919/mongod', { useNewUrlParser: true }); //testaroo is a database on mongodb
 
 mongoose.connection.once('open', function(){  //.once is an event listener 
     console.log('Connection has been made!');
@@ -20,7 +20,7 @@ mongoose.connection.once('open', function(){  //.once is an event listener
 // Drop the characters collection before each test (dropm means delete)
 beforeEach(function(done){
     //Drop the collection 
-    mongoose.connection.collections.marioChar.drop(function(){    //CURRENTLY: drop not working for mlab 
+    mongoose.connection.collections.mariochars.drop(function(){    //CURRENTLY: drop not working for mlab 
         done();
     });  //set to plural 
 });

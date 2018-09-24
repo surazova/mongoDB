@@ -1,11 +1,8 @@
-//Lesson 8 mongoDB
-//Robomongo-gives us a visual representation of our data, in mongoDB 
-
 const assert = require('assert');
 const MarioChar = require('../models/mariochar') 
 
 //Describe the tests 
-before(function(done){
+//before(function(done){
     
     describe('Saving records', function(){
     //Create tests
@@ -19,16 +16,15 @@ before(function(done){
                 done();
             });  
 
-        describe('timeout', function(){
-        this.timeout(30000);
-        done();
-         it('timeout', function(done){
-         this.timeout(30000);
-         setTimeout(done, 30000);
+       // describe('timeout', function(){
+    //    this.timeout(30000);
+      //  done();
+        // it('timeout', function(done){
+         //this.timeout(30000);
+         //setTimeout(done, 30000);
   });
 });
-    });
-});
-});
+
+
 //to run, change test in package.json to mocha 
 //then, type "npm run test "
