@@ -4,24 +4,29 @@ const mongoose = require('mongoose');
 
 
 //Connect to the database before the test is run: 
-//before(function(done){  //added the done parameter
+before(function(done){  //added the done parameter
     //connect to mongoDB
 mongoose.connect('mongodb://localhost/testaroo', { useNewUrlParser: true }); //testaroo is a database on mongodb
 
 mongoose.connection.once('open', function(){  //.once is an event listener 
     console.log('Connection has been made!');
-//  done();
+    done();
 }).on('err', function(error){
     console.log('Connection error:', error);
+    
+  });
 });
-//});
+
+// Drop the characters collection before each test (dropm means delete)
+beforeEach(function(done){
+    //Drop the collection 
+    mongoose.connection.collections.marioChar.drop(function(){    //CURRENTLY: drop not working for mlab 
+        done();
+    });  //set to plural 
+});
+
 
 //You are telling mocha to wait until the connection has been made, before you run the tests, using the mocha hook 
-//use this to run a public port? use mlab? download robomongo?? -->> app.listen(process.env.PORT, process.env.IP, 3000);
-
-
-//Saturday update: use mlab for lesoon 8, not robo3T 
-
 //to run mongod: mongod --bind_ip=$IP --nojournal
-
 //monday: make sure to run in mariochar.js for the database to connect to mlab!
+//this is a mocha test: to make sure that it runs; npm test 
