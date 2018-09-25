@@ -7,7 +7,8 @@ describe('Updating records', function() {
 var char   //declared char
     beforeEach(function(done) {
         char = new MarioChar({
-        name: 'Mario'
+        name: 'Mario',
+        weight: 50
         });
         
         char.save().then(function() {
@@ -25,6 +26,18 @@ var char   //declared char
                done();
            });
        });
+        });
+       
+          it('Increments the weight by one in the database', function(done) {
+
+       MarioChar.update({}, {$inc: {weight: 1}}).then(function(){
+           MarioChar.findOne({name: 'Mario'}).then(function(record){
+               assert(record.weight === 51);
+               done();
+           });
+       });  //$inc is the increment operator, the weight will be +1
+           });
+       });
+       
                     
-                });
-            });
+               
