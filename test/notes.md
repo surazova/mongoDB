@@ -1,2 +1,2 @@
 MongoDB NetNinja
-Lesson 14: update operators 
+Lesson 14: Relational Data 
